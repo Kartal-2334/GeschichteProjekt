@@ -1,4 +1,3 @@
-// Mobile menu functionality
 const menuBtn = document.querySelector('.menu-btn');
 const navLinks = document.querySelector('.nav-links');
 
@@ -7,7 +6,6 @@ menuBtn.addEventListener('click', () => {
     menuBtn.classList.toggle('active');
 });
 
-// Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
     if (!menuBtn.contains(e.target) && !navLinks.contains(e.target)) {
         navLinks.classList.remove('active');
@@ -15,7 +13,6 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -29,13 +26,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             behavior: 'smooth'
         });
 
-        // Close mobile menu after clicking a link
         navLinks.classList.remove('active');
         menuBtn.classList.remove('active');
     });
 });
 
-// Enhanced Navbar background change on scroll
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     const scrolled = window.scrollY;
@@ -50,7 +45,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Enhanced Intersection Observer for animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -68,13 +62,11 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe all cards and sections with staggered animation
 document.querySelectorAll('.benefit-card, .reason-card, .story-card, .animate-text').forEach((element, index) => {
     element.dataset.index = index;
     observer.observe(element);
 });
 
-// Add loading animation to images with fade effect
 document.querySelectorAll('img').forEach(img => {
     img.style.opacity = '0';
     img.addEventListener('load', () => {
@@ -83,20 +75,17 @@ document.querySelectorAll('img').forEach(img => {
     });
 });
 
-// Enhanced Parallax effect for hero section
 window.addEventListener('scroll', () => {
     const hero = document.querySelector('.hero');
     const scrolled = window.pageYOffset;
     hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
-    
-    // Add tilt effect to hero content
+
     const heroContent = document.querySelector('.hero-content');
     const xAxis = (window.innerWidth / 2 - window.event.clientX) / 25;
     const yAxis = (window.innerHeight / 2 - window.event.clientY) / 25;
     heroContent.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
 });
 
-// Add mouse move effect to cards
 document.querySelectorAll('.benefit-card, .reason-card, .story-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -117,7 +106,6 @@ document.querySelectorAll('.benefit-card, .reason-card, .story-card').forEach(ca
     });
 });
 
-// Enhanced typing effect for hero title
 const heroTitle = document.querySelector('.hero h1');
 const text = heroTitle.textContent;
 heroTitle.textContent = '';
@@ -129,19 +117,16 @@ function typeWriter() {
         i++;
         setTimeout(typeWriter, 100);
     } else {
-        // Add cursor blink effect after typing
         const cursor = document.createElement('span');
         cursor.className = 'cursor';
         heroTitle.appendChild(cursor);
     }
 }
 
-// Start typing effect when page loads
 window.addEventListener('load', () => {
     setTimeout(typeWriter, 500);
 });
 
-// Enhanced scroll progress indicator
 const progressBar = document.createElement('div');
 progressBar.className = 'scroll-progress';
 document.body.appendChild(progressBar);
@@ -150,13 +135,10 @@ window.addEventListener('scroll', () => {
     const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const progress = (window.scrollY / windowHeight) * 100;
     progressBar.style.width = progress + '%';
-    
-    // Add color change based on scroll position
     const hue = (progress * 2.4) % 360;
     progressBar.style.background = `hsl(${hue}, 100%, 50%)`;
 });
 
-// Add ripple effect to buttons
 document.querySelectorAll('.cta-button').forEach(button => {
     button.addEventListener('click', function(e) {
         const ripple = document.createElement('span');
@@ -176,7 +158,6 @@ document.querySelectorAll('.cta-button').forEach(button => {
     });
 });
 
-// Interactive map points
 const mapPoints = document.querySelectorAll('.map-point');
 mapPoints.forEach(point => {
     point.addEventListener('mouseenter', () => {
@@ -188,7 +169,6 @@ mapPoints.forEach(point => {
     });
 });
 
-// Culture cards hover effect
 const cultureCards = document.querySelectorAll('.culture-card');
 cultureCards.forEach(card => {
     card.addEventListener('mouseenter', () => {
@@ -200,12 +180,8 @@ cultureCards.forEach(card => {
     });
 });
 
-// Enhanced story card animations
 document.querySelectorAll('.story-card').forEach((card, index) => {
-    // Add staggered animation delay
     card.style.transitionDelay = `${index * 0.2}s`;
-    
-    // Add parallax effect on mouse move
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -219,19 +195,16 @@ document.querySelectorAll('.story-card').forEach((card, index) => {
         
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
         
-        // Add parallax effect to image
         const image = card.querySelector('.story-image img');
         image.style.transform = `scale(1.1) translateX(${rotateY * 2}px) translateY(${rotateX * 2}px)`;
     });
     
-    // Reset transform on mouse leave
     card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
         const image = card.querySelector('.story-image img');
         image.style.transform = 'scale(1.1)';
     });
-    
-    // Add click interaction for tags
+
     card.querySelectorAll('.tag').forEach(tag => {
         tag.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -243,12 +216,12 @@ document.querySelectorAll('.story-card').forEach((card, index) => {
     });
 });
 
-// Add scroll-triggered animations for story cards
+
 const storyObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            // Add a subtle bounce effect
+
             entry.target.style.animation = 'float 6s ease-in-out infinite';
         }
     });
@@ -261,7 +234,7 @@ document.querySelectorAll('.story-card').forEach(card => {
     storyObserver.observe(card);
 });
 
-// Add smooth reveal animation for story content
+
 document.querySelectorAll('.story-content').forEach(content => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -281,37 +254,37 @@ document.querySelectorAll('.story-content').forEach(content => {
 }); 
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Get all video elements
+
     const videos = document.querySelectorAll('video');
     
-    // Create an Intersection Observer
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // When video is in viewport, play it
+
                 entry.target.play();
             } else {
-                // When video is out of viewport, pause it
+
                 entry.target.pause();
             }
         });
     }, {
-        threshold: 0.5 // Video will play when 50% is visible
+        threshold: 0.5
     });
 
-    // Observe each video
+
     videos.forEach(video => {
         observer.observe(video);
     });
 
-    // Close mobile menu when clicking a link
+ 
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
         });
     });
 
-    // Migration Chart
+
     const migrationCtx = document.getElementById('migrationChart').getContext('2d');
     new Chart(migrationCtx, {
         type: 'line',
@@ -350,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Integration Chart
+
     const integrationCtx = document.getElementById('integrationChart').getContext('2d');
     new Chart(integrationCtx, {
         type: 'bar',

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Migration – Eine Reise der Möglichkeiten</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-globe-americas"></i>
+      Migration &amp; Integration
+    </div>
+    <div class="nav-links">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#benefits" class="nav-link">Vorteile</a>
+      <a href="#reasons" class="nav-link">Gründe</a>
+      <a href="#stories" class="nav-link">Geschichten</a>
+      <a href="#videos" class="nav-link">Videos</a>
+    </div>
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1 class="animate-text">Migration verbindet Welten</h1>
+      <p class="animate-text">Entdecken Sie die positiven Aspekte der Migration</p>
+      <div class="hero-buttons">
+        <a href="#benefits" class="cta-button animate-text">Mehr erfahren</a>
+        <a href="#reasons" class="cta-button secondary animate-text">Gründe entdecken</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <section id="benefits" class="benefits">
+    <h2>Positive Aspekte der Migration</h2>
+    <div class="benefits-grid">
+      <!-- Benefit Cards ... -->
+    </div>
+  </section>
+
+  <section id="reasons" class="reasons">
+    <h2>Gründe für Migration</h2>
+    <div class="reasons-grid">
+      <!-- Reason Cards ... -->
+    </div>
+  </section>
+
+  <section id="stories" class="stories">
+    <h2>Erfolgsgeschichten</h2>
+    <div class="stories-container">
+      <!-- Story Cards ... -->
+    </div>
+  </section>
+
+  <section id="diagram" class="diagram">
+    <h2>Migration in Zahlen</h2>
+    <div class="diagram-container">
+      <div class="diagram-card">
+        <div class="diagram-content">
+          <canvas id="migrationChart"></canvas>
+        </div>
+        <div class="diagram-info">
+          <h3>Migration nach Deutschland</h3>
+          <p>Entwicklung der Zuzüge und Fortzüge 2015–2023</p>
+          <div class="source-info">
+            <i class="fas fa-database"></i>
+            <span>Quellen:
+              <a href="https://de.wikipedia.org/wiki/Wanderungsbilanz" target="_blank">Wikipedia – Wanderungsbilanz</a>,
+              <a href="https://www.bamf.de/SharedDocs/Anlagen/DE/Forschung/Migrationsberichte/migrationsbericht-2023.pdf?__blob=publicationFile&v=22" target="_blank">BAMF – Migrationsbericht 2023</a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="diagram-card">
+        <div class="diagram-content">
+          <canvas id="integrationChart"></canvas>
+        </div>
+        <div class="diagram-info">
+          <h3>Erwerbstätige mit Migrationshintergrund</h3>
+          <p>Zahlen 2015–2023 laut Mikrozensus</p>
+          <div class="source-info">
+            <i class="fas fa-database"></i>
+            <span>Quellen:
+              <a href="https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Migration-Integration/Publikationen/_publikationen-innen-migrationshintergrund.html" target="_blank">
+                Destatis – Mikrozensus Bevölkerung nach Migrationshintergrund (Endergebnisse 2023)
+              </a>,
+              <a href="https://mediendienst-integration.de/integration/arbeitsmarkt.html" target="_blank">
+                Mediendienst Integration – Erwerbstätigenquote 2023 (70,4 %)
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos" class="videos">
+    <h2>Videos</h2>
+    <div class="video-grid">
+      <!-- Video Cards ... -->
+    </div>
+  </section>
+
+  <!-- Survey Section -->
+  <section id="survey" class="contact">
+    <h2>Umfrage unserer Schule</h2>
+    <div class="form-container">
+      <iframe
+        src="https://docs.google.com/forms/d/e/DEINE_FORM_ID/viewform?embedded=true"
+        width="100%"
+        height="700"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        class="survey-iframe"
+      >
+        Laden…
+      </iframe>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Migration &amp; Integration. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="diagram.js"></script>
+  <script src="script.js"></script>
+  <script src="survey.js"></script>
+</body>
+</html>

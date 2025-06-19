@@ -8,321 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <style>
-        .survey-section {
-            padding: 80px 20px;
-            background-color: #f8f9fa;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .survey-section h2 {
-            text-align: center;
-            margin-bottom: 50px;
-            color: #333;
-            position: relative;
-        }
-
-        .survey-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: #3498db;
-        }
-
-        .survey-container {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            padding: 0 20px;
-        }
-
-        .survey-form {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .survey-form h3 {
-            margin-bottom: 30px;
-            color: #333;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="number"],
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            color: #333;
-            background-color: white;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: #3498db;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-        }
-
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
-        }
-
-        .checkbox-group label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: normal;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .checkbox-group label:hover {
-            background-color: #e9ecef;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-            accent-color: #3498db;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .survey-results {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: none;
-        }
-
-        .survey-results h3 {
-            margin-bottom: 30px;
-            color: #333;
-            text-align: center;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .result-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .result-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .result-card h4 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        @media (max-width: 768px) {
-            .survey-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .checkbox-group {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .responses-list {
-            margin-top: 40px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .responses-list h4 {
-            margin-bottom: 20px;
-            color: #333;
-            text-align: center;
-        }
-
-        .response-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .response-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .response-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .response-header h5 {
-            margin: 0;
-            color: #3498db;
-        }
-
-        .response-name {
-            color: #666;
-            font-style: italic;
-        }
-
-        .response-details p {
-            margin: 8px 0;
-            color: #333;
-        }
-
-        .response-details strong {
-            color: #3498db;
-        }
-
-        .home-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #3498db;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .home-button:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .home-button i {
-            font-size: 18px;
-        }
-
-        @media (max-width: 768px) {
-            .home-button {
-                top: 10px;
-                right: 10px;
-                padding: 8px 16px;
-                font-size: 14px;
-            }
-        }
-
-        .survey-stats {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 40px;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .survey-stats h3 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .stat-card {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .stat-card h4 {
-            color: #3498db;
-            margin-bottom: 10px;
-        }
-
-        .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-        }
-    </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
             <i class="fas fa-globe-americas"></i>
@@ -340,7 +27,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="animate-text">Migration verbindet Welten</h1>
@@ -355,7 +41,6 @@
         </div>
     </section>
 
-    <!-- Benefits Section -->
     <section id="benefits" class="benefits">
         <h2>Positive Aspekte der Migration</h2>
         <div class="benefits-grid">
@@ -402,7 +87,6 @@
         </div>
     </section>
 
-    <!-- Reasons Section -->
     <section id="reasons" class="reasons">
         <h2>Gründe für Migration</h2>
         <div class="reasons-grid">
@@ -449,7 +133,6 @@
         </div>
     </section>
 
-    <!-- Stories Section -->
     <section id="stories" class="stories">
         <h2>Erfolgsgeschichten</h2>
         <div class="stories-container">
@@ -480,40 +163,41 @@
         </div>
     </section>
 
-    <!-- Diagram Section -->
-    <section id="diagram" class="diagram">
-        <h2>Migration in Zahlen</h2>
-        <div class="diagram-container">
-            <div class="diagram-card">
-                <div class="diagram-content">
-                    <canvas id="migrationChart"></canvas>
-                </div>
-                <div class="diagram-info">
-                    <h3>Migration nach Deutschland</h3>
-                    <p>Entwicklung der Zuwanderung 2015-2023</p>
-                    <div class="source-info">
-                        <i class="fas fa-database"></i>
-                        <span>Quelle: <a href="https://www.bamf.de/SharedDocs/Anlagen/DE/Statistik/Asylgeschaeft/statistik-anlage-teil-4-aktuelle-zahlen-zu-asyl.pdf?__blob=publicationFile&v=32" target="_blank" rel="noopener noreferrer">BAMF - Aktuelle Zahlen zu Asyl</a></span>
-                    </div>
-                </div>
-            </div>
-            <div class="diagram-card">
-                <div class="diagram-content">
-                    <canvas id="integrationChart"></canvas>
-                </div>
-                <div class="diagram-info">
-                    <h3>Integration & Arbeitsmarkt</h3>
-                    <p>Erwerbstätigkeit von Migranten</p>
-                    <div class="source-info">
-                        <i class="fas fa-database"></i>
-                        <span>Quelle: <a href="https://statistik.arbeitsagentur.de/DE/Statischer-Content/Statistiken/Themen-im-Fokus/Menschen-mit-Migrationshintergrund/Generische-Publikationen/Menschen-mit-Migrationshintergrund.pdf" target="_blank" rel="noopener noreferrer">BA - Menschen mit Migrationshintergrund</a></span>
-                    </div>
-                </div>
-            </div>
+   <section id="diagram" class="diagram">
+    <div class="diagram-container">
+      <div class="diagram-card">
+        <div class="diagram-content">
+          <canvas id="migrationChart"></canvas>
         </div>
-    </section>
+        <div class="diagram-info">
+          <h3>Migration nach Deutschland</h3>
+          <p>Entwicklung der Zuzüge und Fortzüge 2015–2023</p>
+          <div class="source-info">
+            <i class="fas fa-database"></i>
+            <span>Quellen:
+              <a href="https://de.wikipedia.org/wiki/Wanderungsbilanz" target="_blank">Wikipedia – Wanderungsbilanz</a>,
+              <a href="https://www.bamf.de/SharedDocs/Anlagen/DE/Forschung/Migrationsberichte/migrationsbericht-2023.pdf?__blob=publicationFile&v=22" target="_blank">BAMF – Migrationsbericht 2023</a>
+            </span>
+          </div>
+        </div>
+      </div>
 
-    <!-- Video Section -->
+      <div class="diagram-card">
+        <div class="diagram-content">
+          <canvas id="integrationChart"></canvas>
+        </div>
+        <div class="diagram-info">
+          <h3>Erwerbstätige mit Migrationshintergrund</h3>
+          <p>Zahlen 2015–2023 laut Mikrozensus</p>
+          <div class="source-info">
+            <i class="fas fa-database"></i>
+            <span>Quellen: <a href="https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Migration-Integration/Publikationen/_publikationen-innen-migrationshintergrund.html" target="_blank">Destatis – Mikrozensus Bevölkerung nach Migrationshintergrund (Endergebnisse 2023)</a>,<a href="https://mediendienst-integration.de/integration/arbeitsmarkt.html" target="_blank">Mediendienst Integration – Erwerbstätigenquote 2023 (70,4 %)</a>
+  </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
     <section id="videos" class="videos">
         <h2>Videos</h2>
         <div class="video-grid">
@@ -534,153 +218,30 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- School Survey Section -->
-    <section class="survey-section" id="survey">
-        <h2>Schulumfrage</h2>
-        <div class="survey-container">
-            <div class="survey-form">
-                <h3>Teilnehmen an der Umfrage</h3>
-                <form id="surveyForm" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label>Alter</label>
-                        <input type="number" id="age" placeholder="Dein Alter" required min="10" max="25">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Woher kommst du ursprünglich?</label>
-                        <select id="origin" required>
-                            <option value="">Bitte wählen</option>
-                            <option value="Deutschland">Deutschland</option>
-                            <option value="Türkei">Türkei</option>
-                            <option value="Syrien">Syrien</option>
-                            <option value="Afghanistan">Afghanistan</option>
-                            <option value="Ukraine">Ukraine</option>
-                            <option value="Andere">Andere</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Wie gut fühlst du dich in der Schule integriert?</label>
-                        <select id="integration" required>
-                            <option value="">Bitte wählen</option>
-                            <option value="Sehr gut">Sehr gut</option>
-                            <option value="Gut">Gut</option>
-                            <option value="Mittelmäßig">Mittelmäßig</option>
-                            <option value="Schlecht">Schlecht</option>
-                            <option value="Sehr schlecht">Sehr schlecht</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Welche Sprachen sprichst du fließend?</label>
-                        <div class="checkbox-group">
-                            <label>
-                                <input type="checkbox" value="Deutsch" name="languages">
-                                Deutsch
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Englisch" name="languages">
-                                Englisch
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Türkisch" name="languages">
-                                Türkisch
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Arabisch" name="languages">
-                                Arabisch
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Russisch" name="languages">
-                                Russisch
-                            </label>
-                            <label>
-                                <input type="checkbox" value="Andere" name="languages">
-                                Andere
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Welche Herausforderungen erlebst du in der Schule?</label>
-                        <textarea id="challenges" rows="3" placeholder="Beschreibe deine Herausforderungen..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Hast du Vorschläge zur Verbesserung der Integration?</label>
-                        <textarea id="suggestions" rows="3" placeholder="Deine Vorschläge..."></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Absenden</button>
-                </form>
-            </div>
-
-            <div class="survey-results" id="surveyResults">
-                <h3>Umfrageergebnisse</h3>
-                <div class="results-grid">
-                    <div class="result-card">
-                        <h4>Herkunftsländer</h4>
-                        <canvas id="originChart"></canvas>
-                    </div>
-                    <div class="result-card">
-                        <h4>Integration</h4>
-                        <canvas id="integrationChart"></canvas>
-                    </div>
-                    <div class="result-card">
-                        <h4>Sprachen</h4>
-                        <canvas id="languagesChart"></canvas>
-                    </div>
-                    <div class="result-card">
-                        <h4>Altersverteilung</h4>
-                        <canvas id="ageChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="survey-stats" id="surveyStats">
-            <h3>Statistische Übersicht</h3>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h4>Gesamtantworten</h4>
-                    <div class="stat-value" id="totalResponses">0</div>
-                </div>
-                <div class="stat-card">
-                    <h4>Durchschnittsalter</h4>
-                    <div class="stat-value" id="averageAge">0</div>
-                </div>
-                <div class="stat-card">
-                    <h4>Integration (Durchschnitt)</h4>
-                    <div class="stat-value" id="averageIntegration">0</div>
-                </div>
-                <div class="stat-card">
-                    <h4>Sprachen pro Person</h4>
-                    <div class="stat-value" id="avgLanguages">0</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="responses-list">
-            <h4>Alle Antworten</h4>
-            <div id="responsesContainer"></div>
+     <section id="survey" class="contact">
+         <h2>Umfrage unserer Schule</h2>
+        <div class="form-container">
+            <iframe
+            src="https://docs.google.com/forms/d/e/DEINE_FORM_ID/viewform?embedded=true"
+            width="100%"
+            height="700"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            class="survey-iframe"
+            >
+            Laden…
+            </iframe>
         </div>
     </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Über uns</h3>
-                <p>Wir setzen uns für eine positive Wahrnehmung von Migration und erfolgreiche Integration ein.</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
+    </section>
             <p>&copy; 2025 Migration & Integration. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="survey.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="diagram.js"></script>
+  <script src="script.js"></script>
+  <script src="survey.js"></script>
 </body>
 </html> 
