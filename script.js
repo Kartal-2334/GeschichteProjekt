@@ -285,79 +285,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    const migrationCtx = document.getElementById('migrationChart').getContext('2d');
-    new Chart(migrationCtx, {
-        type: 'line',
-        data: {
-            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
-            datasets: [{
-                label: 'Zuwanderung nach Deutschland',
-                data: [890000, 500000, 416000, 400000, 327000, 220000, 329000, 268000, 280000],
-                borderColor: '#3498db',
-                backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                tension: 0.4,
-                fill: true
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false,
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Anzahl der Zuwanderer'
-                    }
-                }
-            }
-        }
-    });
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+});
 
-
-    const integrationCtx = document.getElementById('integrationChart').getContext('2d');
-    new Chart(integrationCtx, {
-        type: 'bar',
-        data: {
-            labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
-            datasets: [{
-                label: 'Erwerbstätige mit Migrationshintergrund',
-                data: [7.3, 7.8, 8.2, 8.5, 8.9, 9.1, 9.4, 9.7, 10.0],
-                backgroundColor: 'rgba(52, 152, 219, 0.8)',
-                borderColor: '#3498db',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false,
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Millionen Personen'
-                    }
-                }
-            }
-        }
-    });
-}); 
